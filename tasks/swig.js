@@ -1,7 +1,4 @@
-'use strict';
-
 module.exports = function(grunt) {
-
   var fs = require('fs'),
       swig = require('swig'),
       path = require('path');
@@ -62,20 +59,22 @@ module.exports = function(grunt) {
 
         grunt.file.write(htmlFile, swig.renderFile(file, grunt.util._.extend(globalVars, tplVars, contextVars)));
 
-        if (config.data.sitemap_properties !== undefined && config.data.sitemap_properties[destPath + '/' + outputFile + '.html'] !== undefined) {
-          pages.push({
-            url: config.data.siteUrl + htmlFile.replace(config.data.dest + '/', ''),
-            date: d,
-            changefreq: config.data.sitemap_properties[destPath + '/' + outputFile + '.html'].changefreq || 'weekly',
-            priority: config.data.sitemap_properties[destPath + '/' + outputFile + '.html'].priority || 0.5
-          });
-        } else {
-          pages.push({
-            url: config.data.siteUrl + htmlFile.replace(config.data.dest + '/', ''),
-            date: d,
-            changefreq: 'weekly',
-            priority: defaultPriority
-          });
+        if (generateSitemap || generateRobotstxt) {
+          if (config.data.sitemap_properties !== undefined && config.data.sitemap_properties[destPath + '/' + outputFile + '.html'] !== undefined) {
+            pages.push({
+              url: config.data.siteUrl + htmlFile.replace(config.data.dest + '/', ''),
+              date: d,
+              changefreq: config.data.sitemap_properties[destPath + '/' + outputFile + '.html'].changefreq || 'weekly',
+              priority: config.data.sitemap_properties[destPath + '/' + outputFile + '.html'].priority || 0.5
+            });
+          } else {
+            pages.push({
+              url: config.data.siteUrl + htmlFile.replace(config.data.dest + '/', ''),
+              date: d,
+              changefreq: 'weekly',
+              priority: defaultPriority
+            });
+          }
         }
       }
     });

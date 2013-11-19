@@ -10,7 +10,6 @@ module.exports = function (grunt) {
     swig: {
       development: {
         init: {
-          allowErrors: false,
           autoescape: true
         },
         dest: 'test/dest',
@@ -43,7 +42,8 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        'tasks/*.js'
+        'tasks/*.js',
+        'test/**/*.js'
       ]
     },
     mochaTest: {
