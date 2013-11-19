@@ -16,15 +16,15 @@ helpers.assertFile = function (file, reg) {
 describe('grunt-swig', function() {
 
   it('should create dest/fixtures/index html', function(){
-    helpers.assertFile('test/dest/fixtures/index.html', /^Hello short path file, Hello world/);
+    helpers.assertFile('test/dest/fixtures/index.html', /Hello short path file, Hello world/);
   });
 
   it('should create dest/dest/path/to/index.html', function(){
-    helpers.assertFile('test/dest/fixtures/path/to/index.html', /^Hello long path file/);
+    helpers.assertFile('test/dest/fixtures/path/to/index.html', /Hello long path file/);
   });
 
   it('should create dest/tplFile html', function(){
-    helpers.assertFile('test/dest/fixtures/tplFile.html', /^fixtures, tplFile/);
+    helpers.assertFile('test/dest/fixtures/tplFile.html', /fixtures, tplFile/);
   });
 
   it('should create dest/path/to/tplFile html', function(){
@@ -36,11 +36,11 @@ describe('grunt-swig', function() {
   });
 
   it('should have a priority value of 0.8 in dest/sitemap.xml', function(){
-    helpers.assertFile('test/dest/sitemap.xml', /\<priority\>0\.8\<\/priority\>/);
+    helpers.assertFile('test/dest/sitemap.xml', /<priority>0\.8<\/priority>/);
   });
 
   it('should have a changefreq value of daily in dest/sitemap.xml', function(){
-    helpers.assertFile('test/dest/sitemap.xml', /\<changefreq\>daily<\/changefreq\>/);
+    helpers.assertFile('test/dest/sitemap.xml', /<changefreq>daily<\/changefreq>/);
   });
 
   it('should create dest/robots.txt', function(){
